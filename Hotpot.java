@@ -1,4 +1,4 @@
-public class hotpot{
+public class Hotpot{
 	public static void main(String[] args) {
 		//火锅工厂生产
 		Factory md= new MDFactory();  //毛肚火锅
