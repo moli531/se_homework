@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <title>手机电脑文件互传</title>
+
+</head>
+<style type="text/css">
+    #p1{
+			color: white;
+			font-size:30px;
+			font-weight: bold;
+			font-family: "微软雅黑";
+		}
+	 #p2{
+			color:white;
+			font:italic normal 20px "宋体";
+		}
+    body{
+        background: #fcc;   /*浅色页面背景*/
+    }
+    ul{
+        list-style-type: none;     /*清楚项目符号*/
+    }
+    li{
+        margin: 0 2px;     /*并列显示*/
+        float: left;
+    }
+    a:hover{
+        color: green;
+        background: transparent;
+        border-color: #bbb#fff#fff#aaa;
+    }   /*鼠标经过超链接的样式*/
+
+    a{/*完全清除超链接下划线效果*/
+        text-decoration: none;
+        border:solid 0.7px;
+        padding: 0.2em 0em;
+        color: #444;
+        background: #ffb3bf;    /*超链接背景颜色*/
+        border-color: #fff#aaa#aaa#fff;
+    }
+    .my_table {
+        font-family: 微软雅黑;
+        font-size:12px;
+        color:#003153;
+        font-weight: bold;
+        border:solid 1px #999999;
+        border-collapse: collapse;
+        margin:auto;
+    }
+    .my_table th {
+        background-color:#c3dde0;
+        padding: 8px;
+        border:solid 1px #a9c6c9;
+    }
+    .my_table tr {
+        background-color:#FFC0CB;
+    }
+    .my_table td {
+        padding: 8px;
+        border:solid 1px #a9c6c9;
+    }
+
+    </style>
+<body>
+    <p id="p1" align="center">上传本地文件</p>
+    <p id="p2" align="center">检测到以下IP地址，请复制发送到手机上打开查看</p>
+    {% for i in address %}
+    <h3 align="center"><a href="{{i}}" target=“_blank”>{{i}}</a></h3>
+    {% endfor %}
+    <form action="up_video" enctype='multipart/form-data' method='POST' align="center">
+        <input type="file" name="file" style="margin-top:10px;" multiple/>
+        <input type="submit" value="上传" class="button-new" style="margin-top:10px;"/>
+    </form>
+<table id="mytable" class="my_table" align="center" width='300px' cellpadding="0" cellspacing="0" border="1" style="margin-top:25px;">
+    <tr align="center">
+            <td>电脑端文件目录共 {{all_file}} 个</td>
+            <tr>
+        {% for i in file_list %}
+        <tr align="center">
+        <td><a href="{{url_for('phone_win_file',file_name=i)}}" target=“_blank”>{{i}}</a></td>
+        </tr>
+        {% endfor %}
+</table>
+<div align="center" style="margin-top:20px;">
+
+    <a  href="{{url_for('index')}}" id="btn1">首页</a>
+    <a  href="{{url_for('next_page',page=pages-1)}}" id="btn2">上一页</a>
+    <a  href="{{url_for('next_page',page=pages+1)}}" id="btn3">下一页</a>
+    <a  href="{{url_for('next_page',page=all_page)}}" id="btn4">尾页</a>
+    <a1>当前 {{pages}} / {{(all_page)}} 页</a1>
+
+</div>
+</body>
+</html>
